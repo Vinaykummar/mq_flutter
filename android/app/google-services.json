@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "510029794867",
+    "firebase_url": "https://mqapp-1add5.firebaseio.com",
+    "project_id": "mqapp-1add5",
+    "storage_bucket": "mqapp-1add5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510029794867:android:c0f4dafbe5b1ab49231d46",
+        "android_client_info": {
+          "package_name": "com.mq.app.mq_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510029794867-aagnouqa7jqpcpsk1f9bel5ihk52cqt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBeVcsRHZLK3EMRvioeq5-bUxzGaHe9zU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510029794867-aagnouqa7jqpcpsk1f9bel5ihk52cqt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
