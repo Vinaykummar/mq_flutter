@@ -1,10 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:faker/faker.dart';
-import 'package:mq_flutter/Interfaces/databaseServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mq_flutter/Interfaces/FirestoreWrapperServicesInterface.dart';
 import 'package:mq_flutter/Services/FirebaseService.dart';
 
 class LandingPageServices {
   FirebaseService firebaseService = FirebaseService();
+
+
+
+  Future<AuthResult> signinWithEmailAndPassword() async{
+   return this.firebaseService.signinWithEmailAndPassword();
+  }
+
+    Future<void> signout() {
+      return this.firebaseService.signout();
+    }
+
+  
+
 
   Future<QuerySnapshot> getDocuments(String collectionName) async {
     try {

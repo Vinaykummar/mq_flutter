@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:faker/faker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mq_flutter/Pages/LandingPage/LandingPageService.dart';
 import 'package:mq_flutter/Services/FirebaseService.dart';
 
@@ -11,6 +13,7 @@ class LandingPage extends StatelessWidget {
   String currentStoreDocPath;
   DocumentReference storeBookingDoc;
   String storeBookingDocPath;
+  FirebaseService firebaseService = FirebaseService();
 
   Map<String, dynamic> mockCustomer() {
     return {
@@ -112,8 +115,46 @@ class LandingPage extends StatelessWidget {
     print(userDoc.documentID);
   }
 
+  void _currentUser() async {
+    FirebaseService firebaseService = FirebaseService();
+    try {
+      var firebaseUser = await firebaseService.currentUser;
+      print(firebaseUser.uid);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+ 
+
+  
+    void _signInEmail() async {
+      try {
+        var firebaseUser =
+            await landingPageServices.signinWithEmailAndPassword();
+        print(firebaseUser.user.email);
+      } catch (e) {
+        PlatformException err = e;
+        final snackbar = SnackBar(content: Text(err.message.toString()));
+        Scaffold.of(context).showSnackBar(snackbar);
+        print(err.message);
+      }
+    }
+
+    void _signout() async {
+      try {
+        await firebaseService.signout();
+      } catch (e) {
+        PlatformException err = e;
+        final snackbar = SnackBar(content: Text(err.message.toString()));
+        Scaffold.of(context).showSnackBar(snackbar);
+        print(err.message);
+      }
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,6 +178,18 @@ class LandingPage extends StatelessWidget {
         RaisedButton(
           onPressed: _startBooking,
           child: Text('Start Booking'),
+        ),
+        RaisedButton(
+          onPressed: _signInEmail,
+          child: Text('Signin'),
+        ),
+        RaisedButton(
+          onPressed: _currentUser,
+          child: Text('currentUSer'),
+        ),
+        RaisedButton(
+          onPressed: _signout,
+          child: Text('signout'),
         ),
       ],
     );
